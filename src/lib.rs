@@ -69,3 +69,8 @@ pub use interval::{interval, interval_at, Interval};
 pub use sleep::{sleep, sleep_until, Sleep};
 pub use time::{Instant, SystemTime, SystemTimeError, UNIX_EPOCH};
 pub use timeout::{timeout, timeout_at, Timeout};
+
+pub mod error {
+    // Match the path of tokio::time::error::Elapsed for convenience
+    pub use crate::timeout::Elapsed;
+}
