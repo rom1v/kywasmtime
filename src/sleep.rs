@@ -71,7 +71,11 @@ impl Future for Sleep {
                 return Poll::Ready(());
             }
 
-            let duration_ms: i32 = (this.deadline - now).as_millis().try_into().unwrap();
+            assert!(now < this.deadline);
+            let duration_ms: i32 = (this.deadline - now)
+                .as_millis()
+                .try_into()
+                .unwrap_or(i32::MAX);
 
             // Flag set when the promise is resolved
             let resolved = Rc::new(RefCell::new(false));
