@@ -39,7 +39,14 @@ impl<T: Future> Future for Timeout<T> {
     }
 }
 
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub struct Elapsed; // Error returned by Timeout
+
+impl std::fmt::Display for Elapsed {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "deadline has elapsed")
+    }
+}
 
 pub fn timeout_at<F>(deadline: Instant, future: F) -> Timeout<F::IntoFuture>
 where
