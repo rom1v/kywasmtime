@@ -80,3 +80,7 @@ async fn demo_timeout_at() {
     }
 }
 ```
+
+## License
+
+MIT License
